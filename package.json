@@ -1,0 +1,59 @@
+{
+    "name": "smart-contracts",
+    "version": "1.1.0",
+    "description": "Matsuri smart contracts",
+    "scripts": {
+      "develop": "truffle develop",
+      "compile": "truffle compile && node scripts/exportAbi.js",
+      "deploy:polygon:uat": "truffle migrate --network polygon-uat --reset --f 1 --to 1",
+      "deploy:sepolia:uat": "truffle migrate --network sepolia-uat --reset --f 1 --to 1",
+      "deploy:bsc:uat": "truffle migrate --network bsc-uat --reset --f 1 --to 1",
+      "deploy:avax:uat": "truffle migrate --network avax-uat --reset --f 1 --to 1",
+      "deploy:astar:uat": "truffle migrate --network astar-uat --reset --f 1 --to 1",
+      "deploy:polygon:prod": "truffle migrate --network polygon-prod --reset --f 1 --to 1",
+      "deploy:eth:prod": "truffle migrate --network eth-prod --reset --f 1 --to 1",
+      "deploy:bsc:prod": "truffle migrate --network bsc-prod --reset --f 1 --to 1",
+      "deploy:avax:prod": "truffle migrate --network avax-prod --reset --f 1 --to 1",
+      "deploy:astar:prod": "truffle migrate --network astar-prod --reset --f 1 --to 1",
+      "flatten": "npx hardhat flatten ./contracts/T2WebERC721A.sol > ./flatten/T2WebERC721A-flatten.sol",
+      "test": "npx hardhat test"
+    },
+    "repository": {
+      "type": "git",
+      "url": ""
+    },
+    "author": "hungvu",
+    "license": "MIT",
+    "devDependencies": {
+      "@nomiclabs/hardhat-ethers": "^2.0.6",
+      "@nomiclabs/hardhat-etherscan": "^3.1.1",
+      "@nomiclabs/hardhat-waffle": "^2.0.3",
+      "@nomiclabs/hardhat-web3": "^2.0.0",
+      "ethereum-waffle": "^3.4.4",
+      "ethereumjs-abi": "^0.6.8",
+      "ethers": "^5.6.7",
+      "hardhat-gas-reporter": "^1.0.9",
+      "inquirer": "^8.2.4",
+      "lite-server": "^2.6.1",
+      "prettier": "^2.8.7",
+      "prettier-plugin-solidity": "^1.0.0-beta.13",
+      "solhint": "^3.3.7",
+      "solidity-coverage": "^0.7.0"
+    },
+    "dependencies": {
+      "@chainlink/contracts": "^0.4.0",
+      "@evmchain/contract-deployer": "^1.3.5",
+      "@nomiclabs/hardhat-truffle5": "^2.0.5",
+      "@openzeppelin/contracts": "^4.2.0",
+      "@openzeppelin/contracts-upgradeable": "^4.1.0",
+      "@truffle/hdwallet-provider": "^2.1.9",
+      "dotenv": "^8.2.0",
+      "erc721a": "^4.2.3",
+      "erc721a-upgradeable": "^4.2.3",
+      "hardhat": "^2.9.3",
+      "truffle": "^5.8.2",
+      "truffle-flattener": "^1.5.0",
+      "web3": "^1.7.3"
+    }
+  }
+  
