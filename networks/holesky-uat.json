@@ -1,0 +1,14 @@
+{
+    "contracts": {
+        "NodoProxyAdmin": "",
+        "NodoGem": {
+            "proxy": "",
+            "impl": ""
+        }
+    },
+    "mapping": {},
+    "roles": {
+        "NodoGem": {}
+    },
+    "config": {}
+}

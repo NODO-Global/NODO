@@ -1,39 +1,37 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.13;
 
 library Signature {
+  function splitSignature(bytes memory sig) private pure returns (uint8 v, bytes32 r, bytes32 s) {
+    require(sig.length == 65);
 
-    function splitSignature(bytes memory sig) private pure returns (uint8 v, bytes32 r, bytes32 s) {
-        require(sig.length == 65);
-
-        assembly {
-            // first 32 bytes, after the length prefix.
-            r := mload(add(sig, 32))
-            // second 32 bytes.
-            s := mload(add(sig, 64))
-            // final byte (first byte of the next 32 bytes).
-            v := byte(0, mload(add(sig, 96)))
-        }
-
-        return (v, r, s);
+    assembly {
+      // first 32 bytes, after the length prefix.
+      r := mload(add(sig, 32))
+      // second 32 bytes.
+      s := mload(add(sig, 64))
+      // final byte (first byte of the next 32 bytes).
+      v := byte(0, mload(add(sig, 96)))
     }
 
-    function recoverSigner(bytes32 message, bytes memory sig) internal pure returns (address) {
-        (uint8 v, bytes32 r, bytes32 s) = splitSignature(sig);
+    return (v, r, s);
+  }
 
-        return ecrecover(message, v, r, s);
-    }
+  function recoverSigner(bytes32 message, bytes memory sig) internal pure returns (address) {
+    (uint8 v, bytes32 r, bytes32 s) = splitSignature(sig);
 
-    function prefixed(bytes32 msgHash) internal pure returns (bytes32) {
-        return keccak256(abi.encodePacked("\x19Ethereum Signed Message:\n32", msgHash));
-    }
+    return ecrecover(message, v, r, s);
+  }
 
-    /**
-     * @dev Make sure all signatures and signers are valid
-     */
-    function verifySignature(bytes32 msgHash, bytes memory signature, address signer) internal pure {
-        bytes32 message = prefixed(msgHash);
-        require(recoverSigner(message, signature) == signer, "INVALID_SIGNATURE");
-    }
+  function prefixed(bytes32 msgHash) internal pure returns (bytes32) {
+    return keccak256(abi.encodePacked("\x19Ethereum Signed Message:\n32", msgHash));
+  }
 
+  /**
+   * @dev Make sure all signatures and signers are valid
+   */
+  function verifySignature(bytes32 msgHash, bytes memory signature, address signer) internal pure {
+    bytes32 message = prefixed(msgHash);
+    require(recoverSigner(message, signature) == signer, "INVALID_SIGNATURE");
+  }
 }

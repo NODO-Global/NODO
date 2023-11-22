@@ -1,0 +1,14 @@
+{
+    "contracts": {
+        "NodoProxyAdmin": "0x4Fcc796759C237c81fb6406836eb97f5dE998eaB",
+        "NodoGem": {
+            "proxy": "0x6Cf717feED86a8859AC4E040A77FfE5d1752B42b",
+            "impl": "0xb505e632288e99CfA3de435fBCB200c9663B8A87"
+        }
+    },
+    "mapping": {},
+    "roles": {
+        "NodoGem": {}
+    },
+    "config": {}
+}

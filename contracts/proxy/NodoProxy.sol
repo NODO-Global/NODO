@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.18;
 
 import "@openzeppelin/contracts/proxy/ERC1967/ERC1967Proxy.sol";
 
@@ -25,18 +25,13 @@ import "@openzeppelin/contracts/proxy/ERC1967/ERC1967Proxy.sol";
  * Our recommendation is for the dedicated account to be an instance of the {ProxyAdmin} contract. If set up this way,
  * you should think of the `ProxyAdmin` instance as the real administrative interface of your proxy.
  */
-contract T2WebProxy is ERC1967Proxy {
+contract NodoProxy is ERC1967Proxy {
   /**
    * @dev Initializes an upgradeable proxy managed by `_admin`, backed by the implementation at `_logic`, and
    * optionally initialized with `_data` as explained in {ERC1967Proxy-constructor}.
    */
-  constructor(address _logic, address admin_)
-    payable
-    ERC1967Proxy(_logic, bytes(""))
-  {
-    assert(
-      _ADMIN_SLOT == bytes32(uint256(keccak256("eip1967.proxy.admin")) - 1)
-    );
+  constructor(address _logic, address admin_) payable ERC1967Proxy(_logic, bytes("")) {
+    assert(_ADMIN_SLOT == bytes32(uint256(keccak256("eip1967.proxy.admin")) - 1));
     _changeAdmin(admin_);
   }
 
@@ -104,11 +99,7 @@ contract T2WebProxy is ERC1967Proxy {
    *
    * NOTE: Only the admin can call this function. See {ProxyAdmin-upgradeAndCall}.
    */
-  function upgradeToAndCall(address newImplementation, bytes calldata data)
-    external
-    payable
-    ifAdmin
-  {
+  function upgradeToAndCall(address newImplementation, bytes calldata data) external payable ifAdmin {
     _upgradeToAndCall(newImplementation, data, true);
   }
 

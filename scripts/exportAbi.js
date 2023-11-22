@@ -1,6 +1,6 @@
 const FileSystem = require("fs");
 
-const CONTRACT_FOLDER = "../build/contracts";
+const CONTRACT_FOLDER = "../artifacts/contracts";
 
 /**
  *
@@ -8,7 +8,7 @@ const CONTRACT_FOLDER = "../build/contracts";
  * @param {string} outputAbiFolder
  */
 const exportAbi = function (contract, subfolder, outputAbiFolder = "./abi") {
-  let artifact = require(`${CONTRACT_FOLDER}/${subfolder}/${contract}.json`);
+  let artifact = require(`${CONTRACT_FOLDER}/${subfolder}/${contract}.sol/${contract}.json`);
   console.log("Contract name: ", artifact.contractName);
   let abiPath = outputAbiFolder + "/" + artifact.contractName + ".json";
   console.log("\tWriting ABI file: ", abiPath);
@@ -25,9 +25,4 @@ const exportAbis = function (contracts, subfolder, outputAbiFolder = "./abi") {
   );
 };
 
-exportAbis(
-  [
-    
-  ],
-  "."
-);
+exportAbis(["NodoGem"], ".");
