@@ -25,6 +25,13 @@ async function deployAll() {
       NodoGem: {
         initArgs: ["Nodo Gem", "NDG"],
       },
+      GemTreasury: {
+        initArgs: [
+          "address:NodoGem",
+          "config:minCashoutAmount",
+          "config:maxCashoutAmount",
+        ],
+      },
     },
   });
 

@@ -31,16 +31,19 @@ const config = {
       chainId: 17000,
       url: "https://ethereum-holesky.publicnode.com",
       accounts: [process.env.DEV_PRIVATE_KEY],
+      gasPrice: 10000000000,
     },
     "holesky-uat": {
       chainId: 17000,
       url: "https://ethereum-holesky.publicnode.com",
       accounts: [process.env.UAT_PRIVATE_KEY],
+      gasPrice: 8000000000,
     },
     "holesky-prod": {
       chainId: 17000,
       url: "https://ethereum-holesky.publicnode.com",
       accounts: [process.env.PROD_PRIVATE_KEY],
+      gasPrice: 8000000000,
     },
   },
   etherscan: {

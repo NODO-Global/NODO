@@ -2,30 +2,34 @@
 pragma solidity ^0.8.18;
 
 import {ERC20Upgradeable} from "@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol";
-import {ERC20BurnableUpgradeable} from "@openzeppelin/contracts-upgradeable/token/ERC20/extensions/ERC20BurnableUpgradeable.sol";
-import {ERC20PausableUpgradeable} from "@openzeppelin/contracts-upgradeable/token/ERC20/extensions/ERC20PausableUpgradeable.sol";
+import {PausableUpgradeable} from "@openzeppelin/contracts-upgradeable/security/PausableUpgradeable.sol";
 import {AccessControlUpgradeable} from "@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol";
+
 import "./interfaces/INodoGem.sol";
 
-contract NodoGem is INodoGem, AccessControlUpgradeable, ERC20BurnableUpgradeable, ERC20PausableUpgradeable {
-  bytes32 public constant OPERATOR_ROLE = keccak256("OPERATOR_ROLE");
+contract NodoGem is INodoGem, AccessControlUpgradeable, ERC20Upgradeable, PausableUpgradeable {
+  bytes32 public constant TRANSFER_ROLE = keccak256("TRANSFER_ROLE");
+  bytes32 public constant BURNER_ROLE = keccak256("BURNER_ROLE");
   bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
-  bytes32 public constant PAUSER_ROLE = keccak256("PAUSER_ROLE");  
-
-  bool public transferDisabled;
-
-  modifier onlyOperator() {
-    require(hasRole(OPERATOR_ROLE, _msgSender()), "NodoGem: caller is not operator");
-    _;
-  }
+  bytes32 public constant PAUSER_ROLE = keccak256("PAUSER_ROLE");
 
   modifier onlyMinter() {
-    require(hasRole(MINTER_ROLE, _msgSender()), "NodoGem: caller is not minter");
+    require(hasRole(MINTER_ROLE, _msgSender()), "NodoGem: caller does not have MINTER_ROLE");
     _;
   }
 
   modifier onlyPauser() {
-    require(hasRole(PAUSER_ROLE, _msgSender()), "NodoGem: caller is not pauser");
+    require(hasRole(PAUSER_ROLE, _msgSender()), "NodoGem: caller does not have PAUSER_ROLE");
+    _;
+  }
+
+  modifier onlyTransfer() {
+    require(hasRole(TRANSFER_ROLE, _msgSender()), "NodoGem: caller does not have TRANSFER_ROLE");
+    _;
+  }
+
+  modifier onlyBurner() {
+    require(hasRole(BURNER_ROLE, _msgSender()), "NodoGem: caller does not have BURNER_ROLE");
     _;
   }
 
@@ -38,24 +42,20 @@ contract NodoGem is INodoGem, AccessControlUpgradeable, ERC20BurnableUpgradeable
     __NodoGem_init(name, symbol);
   }
 
-  /**
-   * @dev Grants `DEFAULT_ADMIN_ROLE`, `MINTER_ROLE` and `PAUSER_ROLE` to the
-   * account that deploys the contract.
-   *
-   * See {ERC20-constructor}.
-   */
   function __NodoGem_init(string memory name, string memory symbol) internal onlyInitializing {
     __ERC20_init_unchained(name, symbol);
     __Pausable_init_unchained();
+    __AccessControl_init_unchained();
     __NodoGem_init_unchained(name, symbol);
   }
 
   function __NodoGem_init_unchained(string memory, string memory) internal onlyInitializing {
     _setupRole(DEFAULT_ADMIN_ROLE, _msgSender());
 
-    _setupRole(OPERATOR_ROLE, _msgSender());
     _setupRole(MINTER_ROLE, _msgSender());
     _setupRole(PAUSER_ROLE, _msgSender());
+    _setupRole(BURNER_ROLE, _msgSender());
+    _setupRole(TRANSFER_ROLE, _msgSender());
   }
 
   /**
@@ -98,17 +98,76 @@ contract NodoGem is INodoGem, AccessControlUpgradeable, ERC20BurnableUpgradeable
   }
 
   /**
-   * @dev set transfer disabled flag
+   * @dev See {IERC20-transfer}.
+   *
    * Requirements:
-   * - the caller must have the `DEFAULT_ADMIN_ROLE`.
+   *
+   * - `to` cannot be the zero address.
+   * - the caller must have OPERATOR_ROLE
    */
-  function setTransferDisabled(bool value) public override onlyRole(DEFAULT_ADMIN_ROLE) {
-    transferDisabled = value;
-    emit TransferDisabledUpdated(value);
+  function transfer(address to, uint256 amount) public virtual override onlyTransfer returns (bool) {
+    address sender = _msgSender();
+    _transfer(sender, to, amount);
+    return true;
   }
 
-  function _beforeTokenTransfer(address from, address to, uint256 amount) internal virtual override(ERC20Upgradeable, ERC20PausableUpgradeable) {
+  /**
+   * @dev See {IERC20-transferFrom}.
+   *
+   * Emits an {Approval} event indicating the updated allowance. This is not
+   * required by the EIP. See the note at the beginning of {ERC20}.
+   *
+   * NOTE: Does not update the allowance if the current allowance
+   * is the maximum `uint256`.
+   *
+   * Requirements:
+   *
+   * - `from` and `to` cannot be the zero address.
+   * - `from` must have a balance of at least `amount`.
+   * - the caller must have OPERATOR_ROLE
+   */
+  function transferFrom(address from, address to, uint256 amount) public virtual override onlyTransfer returns (bool) {
+    _transfer(from, to, amount);
+    return true;
+  }
+
+  /**
+   * @dev Destroys `amount` tokens from the caller.
+   *
+   * See {ERC20-_burn}.
+   *
+   * Requirements:
+   *
+   * - the caller must have OPERATOR_ROLE
+   */
+  function burn(uint256 amount) public virtual onlyBurner {
+    _burn(_msgSender(), amount);
+  }
+
+  /**
+   * @dev Destroys `amount` tokens from `account`
+   *
+   * See {ERC20-_burn} and {ERC20-allowance}.
+   *
+   * Requirements:
+   *
+   * - the caller must have OPERATOR_ROLE
+   */
+  function burnFrom(address account, uint256 amount) public virtual onlyBurner {
+    _burn(account, amount);
+  }
+
+  /**
+   * @dev See {ERC20-_beforeTokenTransfer}.
+   *
+   * Requirements:
+   *
+   * - the contract must not be paused.
+   */
+  function _beforeTokenTransfer(address from, address to, uint256 amount) internal virtual override {
     super._beforeTokenTransfer(from, to, amount);
+
+    require(!paused(), "NodoGem: token transfer while paused");
   }
 
   /**

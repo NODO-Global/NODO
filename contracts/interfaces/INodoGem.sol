@@ -2,7 +2,13 @@
 pragma solidity ^0.8.18;
 
 interface INodoGem {
-  event TransferDisabledUpdated(bool value);
+  function pause() external;
 
-  function setTransferDisabled(bool value) external;
+  function unpause() external;
+
+  function mint(address to, uint256 amount) external;
+
+  function burn(uint256 amount) external;
+
+  function burnFrom(address account, uint256 amount) external;
 }
