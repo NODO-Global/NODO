@@ -5,9 +5,12 @@
   "scripts": {
     "clean": "npx hardhat clean",
     "compile": "npx hardhat compile && node scripts/exportAbi.js",        
-    "deploy:dev": "npx hardhat run --network holesky-dev scripts/deploy/index.js",
-    "deploy:uat": "npx hardhat run --network holesky-uat scripts/deploy/index.js",
-    "deploy:prod": "npx hardhat run --network holesky-prod scripts/deploy/index.js",
+    "deploy:holesky:dev": "npx hardhat run --network holesky-dev scripts/deploy/index.js",
+    "deploy:celo:dev": "npx hardhat run --network celo-dev scripts/deploy/index.js",
+    "deploy:avax:dev": "npx hardhat run --network avax-dev scripts/deploy/index.js",
+    "deploy:base:dev": "npx hardhat run --network base-dev scripts/deploy/index.js",
+    "deploy:holesky:uat": "npx hardhat run --network holesky-uat scripts/deploy/index.js",
+    "deploy:holesky:prod": "npx hardhat run --network holesky-prod scripts/deploy/index.js",
     "flatten": "npx hardhat flatten ./contracts/NodoGem.sol > ./flatten/NodoGem-flatten.sol",
     "test": "npx hardhat test"
   },

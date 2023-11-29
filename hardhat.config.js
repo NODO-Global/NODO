@@ -33,11 +33,20 @@ const config = {
       accounts: [process.env.DEV_PRIVATE_KEY],
       gasPrice: 10000000000,
     },
-    "holesky-uat": {
-      chainId: 17000,
-      url: "https://ethereum-holesky.publicnode.com",
-      accounts: [process.env.UAT_PRIVATE_KEY],
-      gasPrice: 10000000000,
+    "celo-dev": {
+      chainId: 44787,
+      url: "https://celo-alfajores.infura.io/v3/7e96ca8646ef4a4b985c958f049b9869",
+      accounts: [process.env.DEV_PRIVATE_KEY],      
+    },
+    "avax-dev": {
+      chainId: 43113,
+      url: "https://avalanche-fuji.infura.io/v3/7e96ca8646ef4a4b985c958f049b9869",
+      accounts: [process.env.DEV_PRIVATE_KEY],      
+    },
+    "base-dev": {
+      chainId: 84532,
+      url: "https://sepolia.base.org",
+      accounts: [process.env.DEV_PRIVATE_KEY],      
     },
     // "holesky-prod": {
     //   chainId: 17000,
