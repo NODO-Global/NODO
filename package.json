@@ -5,12 +5,18 @@
   "scripts": {
     "clean": "npx hardhat clean",
     "compile": "npx hardhat compile && node scripts/exportAbi.js",        
-    "deploy:holesky:dev": "npx hardhat run --network holesky-dev scripts/deploy/index.js",
-    "deploy:celo:dev": "npx hardhat run --network celo-dev scripts/deploy/index.js",
-    "deploy:avax:dev": "npx hardhat run --network avax-dev scripts/deploy/index.js",
-    "deploy:base:dev": "npx hardhat run --network base-dev scripts/deploy/index.js",
-    "deploy:holesky:uat": "npx hardhat run --network holesky-uat scripts/deploy/index.js",
-    "deploy:holesky:prod": "npx hardhat run --network holesky-prod scripts/deploy/index.js",
+    "deploy:local:celo": "npx hardhat run --network celo-local scripts/deploy/index.js",
+    "deploy:local:base": "npx hardhat run --network base-local scripts/deploy/index.js",
+    "deploy:local:avax": "npx hardhat run --network avax-local scripts/deploy/index.js",
+    
+    "deploy:dev:celo": "npx hardhat run --network celo-dev scripts/deploy/index.js",
+    "deploy:dev:avax": "npx hardhat run --network avax-dev scripts/deploy/index.js",
+    "deploy:dev:base": "npx hardhat run --network base-dev scripts/deploy/index.js",
+
+    "deploy:uat:celo": "npx hardhat run --network celo-uat scripts/deploy/index.js",
+    "deploy:uat:avax": "npx hardhat run --network avax-uat scripts/deploy/index.js",
+    "deploy:uat:base": "npx hardhat run --network base-uat scripts/deploy/index.js",
+    
     "flatten": "npx hardhat flatten ./contracts/NodoGem.sol > ./flatten/NodoGem-flatten.sol",
     "test": "npx hardhat test"
   },

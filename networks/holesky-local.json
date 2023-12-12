@@ -1,13 +1,13 @@
 {
     "contracts": {
-        "NodoProxyAdmin": "0x6Cf717feED86a8859AC4E040A77FfE5d1752B42b",
+        "NodoProxyAdmin": "0x733a164841b59d6b024b76F4FB96C3449363EC04",
         "NodoGem": {
-            "proxy": "0x3126A6F48afeC92674B9883E06d395ed89E9DD46",
-            "impl": "0x26DE4FAdBF42c0Fbe368B5d430EC8ebe5ea2eA28"
+            "proxy": "0x21c8997B11987b99211aAde66ceefBcA30C9a760",
+            "impl": "0x14aAeAC2Dbf50743417f1f2A2D210063f0aE0db9"
         },
         "GemTreasury": {
-            "proxy": "0xEC5Dae32Fc045eF7FA62b5e3552cEc3F34fCFCd4",
-            "impl": "0x5e4aB789FECe4588493a9F68Cf08Ebc54b6c7256"
+            "proxy": "0x9A4C2F236871A2d8757BA30E9bB056b5c93574d8",
+            "impl": "0xfdFaEfcD24135d57601feE02aD9977DB596d8370"
         }
     },
     "mapping": {},

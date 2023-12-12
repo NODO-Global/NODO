@@ -1,13 +1,13 @@
 {
     "contracts": {
-        "NodoProxyAdmin": "0x6Cf717feED86a8859AC4E040A77FfE5d1752B42b",
+        "NodoProxyAdmin": "0xfE6163FeDE82CABFA0E8573DE7D95B2818210847",
         "NodoGem": {
-            "proxy": "0x3126A6F48afeC92674B9883E06d395ed89E9DD46",
-            "impl": "0x26DE4FAdBF42c0Fbe368B5d430EC8ebe5ea2eA28"
+            "proxy": "0x35FD47E1324A6c4fAE96DF7fBff1Ed9689C1808E",
+            "impl": "0x37f400706F0F7dc7C6B4F21Ced577C172120F87B"
         },
         "GemTreasury": {
-            "proxy": "0xEC5Dae32Fc045eF7FA62b5e3552cEc3F34fCFCd4",
-            "impl": "0x5e4aB789FECe4588493a9F68Cf08Ebc54b6c7256"
+            "proxy": "0x813598cA7EBD339d0c005E6f21d126447F960bA2",
+            "impl": "0x914D1407A12776772aa0ef9B22C4791788C17672"
         }
     },
     "mapping": {},
@@ -30,7 +30,7 @@
         }
     },
     "config": {
-        "operator.address": "0x5e80a8B38F54ad2198768fBc253676AeF9Cd0Dcd",
+        "operator.address": "0xD70D0c2354EaAEf7FfAa4388C0E03Cc54Aca2970",
         "minCashoutAmount": "1000000000000000000",
         "maxCashoutAmount": "10000000000000000000000"
     }
