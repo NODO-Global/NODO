@@ -7,9 +7,7 @@
     "compile": "npx hardhat compile && node scripts/exportAbi.js",        
     "deploy:local:celo": "npx hardhat run --network celo-local scripts/deploy/index.js",
     "deploy:local:base": "npx hardhat run --network base-local scripts/deploy/index.js",
-    "deploy:local:avax": "npx hardhat run --network avax-local scripts/deploy/index.js",
-    
-    "deploy:dev:defiverse": "npx hardhat run --network defiverse-dev scripts/deploy/index.js",
+    "deploy:local:avax": "npx hardhat run --network avax-local scripts/deploy/index.js",    
 
     "deploy:dev:celo": "npx hardhat run --network celo-dev scripts/deploy/index.js",
     "deploy:dev:avax": "npx hardhat run --network avax-dev scripts/deploy/index.js",
