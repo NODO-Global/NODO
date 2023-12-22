@@ -20,14 +20,58 @@ npm install yarn -g
 yarn
 ```
 
+## Configuration
+
+Copy file `.env.example` to `.env`
+
+```
+cp .env.example .env
+```
+
+Update deployer private key in .env
+
 ## Test
 
 ```
 yarn test
 ```
 
-## Deploy dev
+## Deploy
+
+### Deploy DEV
 
 ```
-deploy:dev
+deploy:dev:celo
+```
+```
+deploy:dev:avax
+```
+```
+deploy:dev:base
+```
+
+### Deploy UAT
+
+```
+deploy:uat:celo
+```
+
+```
+deploy:uat:avax
+```
+
+```
+deploy:uat:base
+```
+
+### Deploy Production
+
+```
+deploy:prod:celo
+```
+```
+deploy:prod:avax
+```
+```
+deploy:prod:base
 ```
