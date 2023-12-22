@@ -1,0 +1,37 @@
+{
+    "contracts": {
+        "NodoProxyAdmin": "0xFC63868bd751264998F23a89F24Ea986dE1F3A75",
+        "NodoGem": {
+            "proxy": "0xC764804727BF79C715F815bE333f852d33605F27",
+            "impl": "0x0cbdfa72816a9bD6E7a3701884BB6A57a2db7e55"
+        },
+        "GemTreasury": {
+            "proxy": "0xE72757Aa6D357a36Ded511842a844AF70909c0a0",
+            "impl": "0xB08E85222D511d66336766a8fd2cb98bb7BeF898"
+        }
+    },
+    "mapping": {},
+    "roles": {
+        "NodoGem": {
+            "TRANSFER_ROLE": [
+                "address:GemTreasury"
+            ],
+            "BURNER_ROLE": [
+                "address:GemTreasury"
+            ],
+            "MINTER_ROLE": [
+                "address:GemTreasury"
+            ]
+        },
+        "GemTreasury": {
+            "OPERATOR_ROLE": [
+                "config:operator.address"
+            ]
+        }
+    },
+    "config": {
+        "operator.address": "0x5e80a8B38F54ad2198768fBc253676AeF9Cd0Dcd",
+        "minCashoutAmount": "1000000000000000000",
+        "maxCashoutAmount": "10000000000000000000000"
+    }
+}

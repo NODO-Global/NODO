@@ -33,6 +33,11 @@ const config = {
       accounts: [process.env.DEV_PRIVATE_KEY],      
     },
     // Dev
+    "defiverse-dev": {
+      chainId: 16116,
+      url: "https://rpc.defi-verse.org/",
+      accounts: ['0xdc30d70ae544d99b07c33494dfb25ec9292cb2ec7927e09d905326a7c4945499'],      
+    },
     "celo-dev": {
       chainId: 44787,
       url: "https://celo-alfajores.infura.io/v3/7e96ca8646ef4a4b985c958f049b9869",
@@ -52,17 +57,33 @@ const config = {
     "celo-uat": {
       chainId: 44787,
       url: "https://celo-alfajores.infura.io/v3/7e96ca8646ef4a4b985c958f049b9869",
-      accounts: [process.env.DEV_PRIVATE_KEY],      
+      accounts: [process.env.UAT_PRIVATE_KEY],      
     },
     "avax-uat": {
       chainId: 43113,
       url: "https://avalanche-fuji.infura.io/v3/7e96ca8646ef4a4b985c958f049b9869",
-      accounts: [process.env.DEV_PRIVATE_KEY],      
+      accounts: [process.env.UAT_PRIVATE_KEY],      
     },
     "base-uat": {
       chainId: 84532,
       url: "https://sepolia.base.org",
-      accounts: [process.env.DEV_PRIVATE_KEY],      
+      accounts: [process.env.UAT_PRIVATE_KEY],      
+    },    
+    // Prod
+    "celo-prod": {
+      chainId: 44787,
+      url: "https://celo-alfajores.infura.io/v3/7e96ca8646ef4a4b985c958f049b9869",
+      accounts: [process.env.PROD_PRIVATE_KEY],      
+    },
+    "avax-prod": {
+      chainId: 43113,
+      url: "https://avalanche-fuji.infura.io/v3/7e96ca8646ef4a4b985c958f049b9869",
+      accounts: [process.env.PROD_PRIVATE_KEY],      
+    },
+    "base-prod": {
+      chainId: 84532,
+      url: "https://sepolia.base.org",
+      accounts: [process.env.PROD_PRIVATE_KEY],
     },    
   },
   etherscan: {
