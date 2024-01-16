@@ -363,4 +363,8 @@ describe("GemTreasury contract", function () {
 
     expect(await gem.balanceOf(user1.address)).to.equal(0);
   });
+
+  it.only("test", async function () {
+    expect(await gemTreasury.getVersion()).to.equal(2);
+  });
 });

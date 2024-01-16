@@ -7,7 +7,7 @@
         },
         "GemTreasury": {
             "proxy": "0x916A6314e9d8E51BEB18b355ad52b4506262620f",
-            "impl": "0x617c280A37A1e340e711e59090AbD4D330847f54"
+            "impl": "0x1e579a1AE5DA042C925902F3Efec1035C9329283"
         }
     },
     "mapping": {},

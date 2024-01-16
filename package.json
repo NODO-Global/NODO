@@ -20,7 +20,7 @@
     "deploy:prod:celo": "npx hardhat run --network celo-prod scripts/deploy/index.js",
     "deploy:prod:avax": "npx hardhat run --network avax-prod scripts/deploy/index.js",
     "deploy:prod:base": "npx hardhat run --network base-prod scripts/deploy/index.js",
-    
+        
     "flatten": "npx hardhat flatten ./contracts/NodoGem.sol > ./flatten/NodoGem-flatten.sol",
     "test": "npx hardhat test"
   },

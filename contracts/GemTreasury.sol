@@ -167,6 +167,14 @@ contract GemTreasury is IGemTreasury, AccessControlUpgradeable, ReentrancyGuardU
 
     emit AllocateGem(requestId, receiver, amount);
   }
+  
+  function getUserAllocation(address addr) external view returns (uint) {
+    return _allocations[addr];
+  }
+
+  function getUserCashout(address addr) external view returns (uint) {
+    return _cashouts[addr];
+  }
 
   /**
    * @dev This empty reserved space is put in place to allow future versions to add new
