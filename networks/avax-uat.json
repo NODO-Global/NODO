@@ -32,6 +32,6 @@
     "config": {
         "operator.address": "0xD70D0c2354EaAEf7FfAa4388C0E03Cc54Aca2970",
         "minCashoutAmount": "1000000000000000000",
-        "maxCashoutAmount": "10000000000000000000000"
+        "maxCashoutAmount": "300000000000000000000000"
     }
 }
