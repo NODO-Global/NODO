@@ -1,0 +1,25 @@
+{
+    "contracts": {
+        "NodoProxyAdmin": "0x3294EADc7d9CBF2e9f02c09b4935D90f76a4d6e9",
+        "CoinTreasury": {
+            "proxy": "0x18425D3dbde19c21F3CD55B21Fd215EcfDA561BB",
+            "impl": "0x6FfcdAbA3CbBeFeEae97D1FdbcfD08219D882f5e"
+        }
+    },
+    "mapping": {
+        "USDC": "MockERC20",
+        "USDT": "MockERC20"
+    },
+    "roles": {
+        "CoinTreasury": {
+            "OPERATOR_ROLE": [
+                "config:operator.address"
+            ]
+        }
+    },
+    "config": {
+        "minSigner": 1,
+        "operator.address": "0xD70D0c2354EaAEf7FfAa4388C0E03Cc54Aca2970",
+        "signer1.address": "0xaA6cc352B813844faf18c48B05d65679ee15bE84"
+    }
+}

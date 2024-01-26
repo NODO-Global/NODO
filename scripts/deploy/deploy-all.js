@@ -40,6 +40,8 @@ async function deployAll() {
   await contractDeployer.grantRoles();
 
   // await test(contractDeployer);
+
+  await setup(contractDeployer);
 }
 
 const BN = (value) => {
@@ -51,6 +53,19 @@ const toEther = (value, decimals = 18) => {
   return BN(value)
     .div(10 ** decimals)
     .toFixed(1);
+};
+
+const setup = async (contractDeployer) => {
+  let gemTreasury = await contractDeployer.loadContract("GemTreasury");
+
+  const maxCashoutAmount = await contractDeployer.formatValue(
+    "config:maxCashoutAmount"
+  );
+  const currentMaxCashoutAmount = await gemTreasury.maxCashoutAmount();
+  if (`${currentMaxCashoutAmount.toString()}` != `${maxCashoutAmount}`) {
+    const rs = await gemTreasury.setMaxCashoutAmount(maxCashoutAmount);
+    console.log("setMaxCashoutAmount:", maxCashoutAmount, rs.tx);
+  }
 };
 
 const test = async (contractDeployer) => {

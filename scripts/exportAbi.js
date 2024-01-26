@@ -25,4 +25,4 @@ const exportAbis = function (contracts, subfolder, outputAbiFolder = "./abi") {
   );
 };
 
-exportAbis(["NodoGem", "GemTreasury"], ".");
+exportAbis(["NodoGem", "GemTreasury", "CoinTreasury"], ".");

@@ -48,6 +48,26 @@ const config = {
       url: "https://sepolia.base.org",
       accounts: [process.env.DEV_PRIVATE_KEY],
     },
+    "coin-celo-dev": {
+      chainId: 44787,
+      url: "https://celo-alfajores.infura.io/v3/7e96ca8646ef4a4b985c958f049b9869",
+      accounts: [process.env.DEV_PRIVATE_KEY],
+    },
+    "coin-avax-dev": {
+      chainId: 43113,
+      url: "https://avalanche-fuji.infura.io/v3/7e96ca8646ef4a4b985c958f049b9869",
+      accounts: [process.env.DEV_PRIVATE_KEY],
+    },
+    "coin-base-dev": {
+      chainId: 84532,
+      url: "https://sepolia.base.org",
+      accounts: [process.env.DEV_PRIVATE_KEY],
+    },
+    "coin-eth-dev": {
+      chainId: 17000,
+      url: "https://ethereum-holesky.publicnode.com",
+      accounts: [process.env.DEV_PRIVATE_KEY],
+    },
     // UAT
     "celo-uat": {
       chainId: 44787,
@@ -64,6 +84,28 @@ const config = {
       url: "https://sepolia.base.org",
       accounts: [process.env.UAT_PRIVATE_KEY],
     },
+
+    "coin-celo-uat": {
+      chainId: 44787,
+      url: "https://celo-alfajores.infura.io/v3/7e96ca8646ef4a4b985c958f049b9869",
+      accounts: [process.env.DEV_PRIVATE_KEY],
+    },
+    "coin-avax-uat": {
+      chainId: 43113,
+      url: "https://avalanche-fuji.infura.io/v3/7e96ca8646ef4a4b985c958f049b9869",
+      accounts: [process.env.DEV_PRIVATE_KEY],
+    },
+    "coin-base-uat": {
+      chainId: 84532,
+      url: "https://sepolia.base.org",
+      accounts: [process.env.DEV_PRIVATE_KEY],
+    },
+    "coin-eth-uat": {
+      chainId: 17000,
+      url: "https://ethereum-holesky.publicnode.com",
+      accounts: [process.env.DEV_PRIVATE_KEY],
+    },
+
     // Prod
     "celo-prod": {
       chainId: 44787,
